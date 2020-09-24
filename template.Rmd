@@ -1,0 +1,26 @@
+---
+title: "xxx-Trial-Title-xxx"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+### Basic information
+
+**Trial ID:** xxx-Trial-Identifier-xxx </br>
+**Trial Status:** xxx-Trial-Status-xxx </br>
+**Trial Phase:** xxx-Trial-Phase-xxx </br>
+</br>
+**Therapy Area:** xxx-Therapy-Area-xxx </br>
+
+### Description:
+xxx-Trial-Description-xxx
+
+### Subjects:
+
+**Age:**
+
+## [Go back](../index.html)
+

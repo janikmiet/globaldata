@@ -1,0 +1,39 @@
+---
+title: "Clinical trials"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r datasets}
+d <- readr::read_csv2("../data/clinical_trials.csv")
+# d$Link <- paste0("trials/", d$`Trial Identifier`, ".html")
+d$url <- paste0("trials/", d$`Trial Identifier`, ".html")
+d$Link <- paste0("<a href='",d$url,"'>",d$url,"</a>")
+# primary_cols <- c("Primary IDs", "Trial Title", "Therapy Area", "Indication", "Trial Phase", "Trial Status", "Sponsor Name", "Study Design", "Purpose", "Trial Description", "Trial Start Date", "Trial End Date", "Single Country/Multinational", "Country", "View Locations")
+```
+
+
+```{r datatable}
+cols <- c("Trial Title", "Therapy Area", "Sponsor Name", "Study Design", "Trial Phase", "Trial Status", "Trial Start Date", "Trial End Date", "Country", "Link")
+# DT::datatable(d[, cols])
+DT::datatable(d[, cols],
+              selection = c("single"),
+              rownames = FALSE, 
+              filter = 'top',
+              escape = FALSE,
+              #extensions = 'Buttons', 
+              options = list(
+                # dom = 'Bfrtip',
+                search = list(regex = TRUE, caseInsensitive = FALSE),
+                columnDefs = list(list(className = 'dt-right',  targets = "_all")),
+                pageLength = 20
+                # language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Finnish.json')
+                # dom = 'Bfrtip',
+                # buttons = c('copy', 'csv', 'excel', 'pdf', 'print')
+              ))
+```
+
+
