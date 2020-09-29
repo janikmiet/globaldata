@@ -1,24 +1,72 @@
 ---
 title: "Clinical trials"
-output: html_document
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    theme: united  # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
 ---
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-```
-
-```{r datasets}
 d <- readr::read_csv2("../data/clinical_trials.csv")
-# d$Link <- paste0("trials/", d$`Trial Identifier`, ".html")
 d$url <- paste0("trials/", d$`Trial Identifier`, ".html")
 d$Link <- paste0("<a href='",d$url,"'>",d$url,"</a>")
-# primary_cols <- c("Primary IDs", "Trial Title", "Therapy Area", "Indication", "Trial Phase", "Trial Status", "Sponsor Name", "Study Design", "Purpose", "Trial Description", "Trial Start Date", "Trial End Date", "Single Country/Multinational", "Country", "View Locations")
+
+library(flexdashboard)
 ```
+
+```{r, eval=FALSE}
+output: 
+  html_document:
+    toc: false # table of content true
+    toc_depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    toc_float: false # floating toc
+    toc_collapsed: false # collapse 
+    number_sections: false  ## if you want number sections at each table header
+    theme: united  # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
+    #css: my.css   # you can add your custom css, should be in same folder
+```
+
+Info
+=======================================================================
+
+Row
+-----------------------------------------------------------------------
+
+### Trials
+
+```{r}
+valueBox(nrow(d), icon = "fa-heartbeat")
+```
+
+### Sponsors
+
+```{r}
+valueBox(length(unique(d$`Sponsor Name`)), icon = "fa-sitemap")
+```
+
+### Subjects Planned
+
+```{r}
+valueBox(sum(d$`No. of Subjects Planned`, na.rm = T), icon = "fa-user")
+```
+
+### Subjects Enrolled
+
+```{r}
+valueBox(sum(d$`No. of Subjects Enrolled`, na.rm = T), icon = "fa-users")
+```
+
+Row
+-----------------------------------------------------------------------
 
 
 ```{r datatable}
 cols <- c("Trial Title", "Therapy Area", "Sponsor Name", "Study Design", "Trial Phase", "Trial Status", "Trial Start Date", "Trial End Date", "Country", "Link")
-# DT::datatable(d[, cols])
 DT::datatable(d[, cols],
               selection = c("single"),
               rownames = FALSE, 

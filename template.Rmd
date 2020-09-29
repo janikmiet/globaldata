@@ -1,11 +1,23 @@
 ---
 title: "xxx-Trial-Title-xxx"
-output: html_document
+output: 
+  html_document:
+    toc: true # table of content true
+    toc_depth: 3  # upto three depths of headings (specified by #, ## and ###)
+    toc_float: true # floating toc
+    toc_collapsed: false # collapse 
+    number_sections: false  ## if you want number sections at each table header
+    theme: united  # many options for theme, this one is my favorite.
+    highlight: tango  # specifies the syntax highlighting style
+    #css: my.css   # you can add your custom css, should be in same folder
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+xxx-Trial-Description-xxx
+
 
 ### Basic information
 
@@ -15,12 +27,40 @@ knitr::opts_chunk$set(echo = FALSE)
 </br>
 **Therapy Area:** xxx-Therapy-Area-xxx </br>
 
-### Description:
-xxx-Trial-Description-xxx
 
-### Subjects:
+### Sponsor & Collaborator
 
-**Age:**
+**Sponsor:** xxx-Sponsor-Name-xxx </br>
+**Sponsor type:** xxx-Sponsor-Type-xxx </br>
+</br>
+**Collaborator:** xxx-Collaborator-xxx </br>
+**Collaborator type:** xxx-Collaborator-Type-xxx </br>
 
-## [Go back](../index.html)
+
+### Study
+
+**Design:** xxx-Study-Design-xxx </br>
+**Hypothesis:** xxx-Hypothesis-xxx </br>
+**Purpose:** xxx-Purpose-xxx </br>
+**Primary Objective(s):** xxx-Primary-Objective-xxx </br>
+**Secondary Objective(s):** xxx-Secondary-Objective-xxx </br>
+**Responsible Authority:** xxx-Responsible-Authority-xxx </br>
+
+
+### Subjects
+
+**Age (Minimum Eligibility):** xxx-Age-Minimum-xxx </br>
+**Age (Maximum Eligibility):** xxx-Age-Maximum-xxx </br>
+**Gender:** xxx-Gender-xxx </br>
+**Healthy Subject(s):** xxx-Healthy-Subject-xxx </br>
+**Participants Criteria (Inclusion):** xxx-Participants-Criteria-Inclusion-xxx </br>
+**Participants Criteria (Exclusion):** xxx-Participants-Criteria-Exclusion-xxx </br>
+**Subject(s) Type:** xxx-Subject-Type-xxx </br>
+
+
+### Contacts and Coordinators
+
+
+
+### [Go back](../index.html)
 
