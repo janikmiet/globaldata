@@ -26,7 +26,7 @@ xxx-Trial-Description-xxx
 **Trial Phase:** xxx-Trial-Phase-xxx </br>
 </br>
 **Therapy Area:** xxx-Therapy-Area-xxx </br>
-
+**Indication:** xxx-Indication-xxx </br>
 
 ### Sponsor & Collaborator
 

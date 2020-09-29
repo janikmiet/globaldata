@@ -2,10 +2,7 @@
 library(tidyverse)
 
 # Data
-d <- readr::read_csv2("../data/clinical_trials.csv")
-d$`Therapy Area` <- gsub(pattern = "\n", replacement = ", ", x = d$`Therapy Area`)
-d$Country <- gsub(pattern = "\n", replacement = ", ", x = d$Country)
-d$`Sponsor Name` <- gsub(pattern = "\n", replacement = ", ", x = d$`Sponsor Name`)
+source("load_data.R")
 
 ## Create directories 
 if(!dir.exists("temp/")) dir.create("temp/")
@@ -55,11 +52,14 @@ for (i in 1:nrow(d)) {
                                        pattern = "xxx-Therapy-Area-xxx",
                                        replacement = check_na(d1$`Therapy Area`))
   template <- stringr::str_replace_all(string = template,
+                                       pattern = "xxx-Indication-xxx",
+                                       replacement = check_na(d1$Indication))
+  template <- stringr::str_replace_all(string = template,
                                        pattern = "xxx-Trial-Status-xxx",
-                                       replacement = check_na(d1$`Trial Status`))
+                                       replacement = as.character(check_na(d1$`Trial Status`)))
   template <- stringr::str_replace_all(string = template,
                                        pattern = "xxx-Trial-Phase-xxx",
-                                       replacement = check_na(d1$`Trial Phase`))
+                                       replacement = as.character(check_na(d1$`Trial Phase`)))
   template <- stringr::str_replace_all(string = template,
                                        pattern = "xxx-Sponsor-Name-xxx",
                                        replacement = check_na(d1$`Sponsor Name`))

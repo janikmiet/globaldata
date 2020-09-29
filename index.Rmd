@@ -1,5 +1,6 @@
 ---
-title: "Clinical trials"
+title: "Clinical trials in Finland"
+date: "`r paste0('Updated: ', Sys.time())`"
 output:
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -11,25 +12,10 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-d <- readr::read_csv2("../data/clinical_trials.csv")
-d$url <- paste0("trials/", d$`Trial Identifier`, ".html")
-d$Link <- paste0("<a href='",d$url,"'>",d$url,"</a>")
-
 library(flexdashboard)
+source("load_data.R") #
 ```
 
-```{r, eval=FALSE}
-output: 
-  html_document:
-    toc: false # table of content true
-    toc_depth: 3  # upto three depths of headings (specified by #, ## and ###)
-    toc_float: false # floating toc
-    toc_collapsed: false # collapse 
-    number_sections: false  ## if you want number sections at each table header
-    theme: united  # many options for theme, this one is my favorite.
-    highlight: tango  # specifies the syntax highlighting style
-    #css: my.css   # you can add your custom css, should be in same folder
-```
 
 Info
 =======================================================================
@@ -66,7 +52,7 @@ Row
 
 
 ```{r datatable}
-cols <- c("Trial Title", "Therapy Area", "Sponsor Name", "Study Design", "Trial Phase", "Trial Status", "Trial Start Date", "Trial End Date", "Country", "Link")
+cols <- c("Trial Title", "Therapy Area", "Indication", "Sponsor Name", "Study Design", "Trial Phase", "Trial Status", "Trial Start Date", "Trial End Date", "Country", "Link")
 DT::datatable(d[, cols],
               selection = c("single"),
               rownames = FALSE, 
@@ -75,7 +61,7 @@ DT::datatable(d[, cols],
               #extensions = 'Buttons', 
               options = list(
                 # dom = 'Bfrtip',
-                search = list(regex = TRUE, caseInsensitive = FALSE),
+                search = list(regex = TRUE, caseInsensitive = TRUE),
                 columnDefs = list(list(className = 'dt-right',  targets = "_all")),
                 pageLength = 20
                 # language = list(url = '//cdn.datatables.net/plug-ins/1.10.11/i18n/Finnish.json')
@@ -84,4 +70,9 @@ DT::datatable(d[, cols],
               ))
 ```
 
+About
+=======================================================================
 
+### About this webpage
+
+We collected information of clinical trials which are currently held in Finland. Data is obtained from GlobalData.com and it is parsed, cleaned and formatted for user readable form. In case of a question, please [contact us]().
