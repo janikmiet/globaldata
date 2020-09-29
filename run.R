@@ -4,6 +4,8 @@ library(tidyverse)
 # Data
 d <- readr::read_csv2("../data/clinical_trials.csv")
 d$`Therapy Area` <- gsub(pattern = "\n", replacement = ", ", x = d$`Therapy Area`)
+d$Country <- gsub(pattern = "\n", replacement = ", ", x = d$Country)
+d$`Sponsor Name` <- gsub(pattern = "\n", replacement = ", ", x = d$`Sponsor Name`)
 
 ## Create directories 
 if(!dir.exists("temp/")) dir.create("temp/")
@@ -127,3 +129,11 @@ for(page in pages){
 
 ## INDEX PAGE ----
 rmarkdown::render("index.Rmd", output_dir = "output/")
+
+
+
+## Upload ----
+
+# move files to kapsi
+# system("scp -r ./output/* janikmiet@kapsi.fi:sites/janimiettinen.fi/www/clinicaltrials/")
+
