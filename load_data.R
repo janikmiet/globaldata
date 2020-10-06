@@ -1,5 +1,5 @@
 # Read dataset and wrangle
-d <- readr::read_csv2("../data/clinical_trials.csv")
+d <- readr::read_csv2("./data/2020-10-05_clinical_trials.csv")
 # Use commas
 d$`Therapy Area` <- gsub(pattern = "\n", replacement = ", ", x = d$`Therapy Area`)
 d$Country <- gsub(pattern = "\n", replacement = ", ", x = d$Country)
