@@ -1,5 +1,12 @@
 # Read dataset and wrangle
-d <- readr::read_csv2("./data/2020-10-05_clinical_trials.csv")
+
+## Read the latest file ----
+fils <- list.files("data/")
+latest <- fils[order(format(as.Date(substr(fils, 1, 10), format = "%Y-%m-%d")), decreasing = T)[1]]
+d <- readr::read_csv2(paste0("data/", latest))
+# d <- readr::read_csv2("./data/2020-10-05_clinical_trials.csv") ## manual file read
+
+## Wrangle variables ----
 # Use commas
 d$`Therapy Area` <- gsub(pattern = "\n", replacement = ", ", x = d$`Therapy Area`)
 d$Country <- gsub(pattern = "\n", replacement = ", ", x = d$Country)

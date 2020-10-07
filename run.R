@@ -1,7 +1,17 @@
-# Creates clinical trials webpages from CSV file
+## GLOBALDATA CLINICAL TRIALS WEBPAGE/DATABASE
+# This script creates clinical trials webpages from CSV file
+
 library(tidyverse)
 
-# Data
+## PARAMS AND FUNCTIONS ----
+clean_folders <- FALSE # cleans ./temp and ./output folders before rendering files
+
+## Help function to recode NA values
+check_na <- function(x) {
+  ifelse(is.na(x), "NA", x)
+}
+
+## LOAD DATA AND CREATE FOLDERS ----
 source("load_data.R")
 
 ## Create directories 
@@ -11,15 +21,15 @@ if(!dir.exists("output/")) dir.create("output/")
 if(!dir.exists("output/trials")) dir.create("output/trials")
 
 ## REMOVE ALL FILES FROM ./temp/ -----
-if(FALSE){
+if(clean_folders){
   fils <- list.files("temp/", full.names = T, recursive = T)
   for (fil in fils) {
     file.remove(fil)
   }
 }
 
-## REMOVE ALL FILES FROM output/ -----
-if(FALSE){
+## REMOVE ALL FILES FROM ./output/ -----
+if(clean_folders){
   fils <- list.files("output/", full.names = T, recursive = T)
   for (fil in fils) {
     file.remove(fil)
@@ -27,12 +37,7 @@ if(FALSE){
 }
 
 
-#help function to chagne na
-check_na <- function(x) {
-  ifelse(is.na(x), "NA", x)
-}
-
-## CREATE TRIAL RMD-PAGES -----
+## CREATE RMD-PAGES -----
 for (i in 1:nrow(d)) {
   d1 <- d[i,]
   
@@ -112,27 +117,20 @@ for (i in 1:nrow(d)) {
                                        pattern = "xxx-Subject-Type-xxx",
                                        replacement = check_na(d1$`Subject(s) Type`))
   
-  # template <- stringr::str_replace_all(string = template,
-  #                                      pattern = "",
-  #                                      replacement = )
-  
   # save as new file
   writeLines(template, paste0("./temp/trials/", d1$`Trial Identifier`,".Rmd"))
 }
 
-
-## RENDER TO OUTPUT ----
+## RENDER RMD TO HTML  ./OUTPUT ----
 pages <- list.files("temp/trials/", full.names = T)
 for(page in pages){
   rmarkdown::render(page, output_dir = "output/trials/")
 }
 
-## INDEX PAGE ----
+## CREATE INDEX PAGE ----
 rmarkdown::render("index.Rmd", output_dir = "output/")
 
-
-
-## Upload ----
+## UPLOAD HTML FILES ----
 
 # move files to kapsi
 # system("scp -r ./output/* janikmiet@kapsi.fi:sites/janimiettinen.fi/www/clinicaltrials/")

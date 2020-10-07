@@ -76,3 +76,4 @@ About
 ### About this webpage
 
 We collected information of clinical trials which are currently held in Finland. Data is obtained from GlobalData.com and it is parsed, cleaned and formatted for user readable form. In case of a question, please [contact us]().
+
