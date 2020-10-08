@@ -26,7 +26,7 @@ Row
 ### Trials
 
 ```{r}
-valueBox(nrow(d), icon = "fa-heartbeat")
+valueBox(nrow(d), icon = "fa-medkit")
 ```
 
 ### Sponsors
@@ -35,13 +35,13 @@ valueBox(nrow(d), icon = "fa-heartbeat")
 valueBox(length(unique(d$`Sponsor Name`)), icon = "fa-sitemap")
 ```
 
-### Subjects Planned
+### Subjects Planned (global)
 
 ```{r}
 valueBox(sum(d$`No. of Subjects Planned`, na.rm = T), icon = "fa-user")
 ```
 
-### Subjects Enrolled
+### Subjects Enrolled (global)
 
 ```{r}
 valueBox(sum(d$`No. of Subjects Enrolled`, na.rm = T), icon = "fa-users")
@@ -75,5 +75,5 @@ About
 
 ### About this webpage
 
-We collected information of clinical trials which are currently held in Finland. Data is obtained from GlobalData.com and it is parsed, cleaned and formatted for user readable form. In case of a question, please [contact us]().
+We collected information of clinical trials which are currently held in Finland. Data is obtained from [GlobalData.com](https://globaldata.com/) and it is parsed, cleaned and formatted for user readable form. In case of a question, please [contact us]().
 

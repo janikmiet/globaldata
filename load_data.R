@@ -1,12 +1,15 @@
 # Read dataset and wrangle
 
-## Read the latest file ----
-fils <- list.files("data/")
-latest <- fils[order(format(as.Date(substr(fils, 1, 10), format = "%Y-%m-%d")), decreasing = T)[1]]
-d <- readr::read_csv2(paste0("data/", latest))
-# d <- readr::read_csv2("./data/2020-10-05_clinical_trials.csv") ## manual file read
 
-## Wrangle variables ----
+## SIMPLE ------
+
+## Read the latest file
+fils <- list.files("data/simple/")
+latest <- fils[order(format(as.Date(substr(fils, 1, 10), format = "%Y-%m-%d")), decreasing = T)[1]]
+d <- readr::read_csv2(paste0("data/simple/", latest))
+# d <- readr::read_csv2("./data/simple/2020-10-05_clinical_trials.csv") ## manual file read
+
+## Wrangle variables
 # Use commas
 d$`Therapy Area` <- gsub(pattern = "\n", replacement = ", ", x = d$`Therapy Area`)
 d$Country <- gsub(pattern = "\n", replacement = ", ", x = d$Country)
@@ -23,3 +26,14 @@ d$`Trial Phase` <- factor(d$`Trial Phase`)
 d$url <- paste0("trials/", d$`Trial Identifier`, ".html")
 d$Link <- paste0("<a href='",d$url,"'>",d$url,"</a>")
 
+
+
+
+
+# ## ADVANCED -----
+# 
+# ## Read the latest file
+# fils <- list.files("data/advanced/")
+# latest <- fils[order(format(as.Date(substr(fils, 1, 10), format = "%Y-%m-%d")), decreasing = T)[1]]
+# d_adv <- readr::read_csv2(paste0("data/advanced/", latest))
+# d_adv <- d_adv %>% filter(Country == "Finland")
