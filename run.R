@@ -131,7 +131,5 @@ for(page in pages){
 rmarkdown::render("index.Rmd", output_dir = "output/")
 
 ## UPLOAD HTML FILES ----
-
-# move files to kapsi
-# system("scp -r ./output/* janikmiet@kapsi.fi:sites/janimiettinen.fi/www/clinicaltrials/")
+system("scp -P 10199 -r ./output/* neurocenterfinland@neurocenterfinland.fi-h.seravo.com:/home/neurocenterfinland/wordpress/htdocs/kliiniset-tutkimukset")
 

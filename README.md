@@ -8,10 +8,10 @@ This project parses clinical trials data from GlobalData.com and creates webpage
 
 ### Workflow
 
-1. Download Excel files (single tab/advanced export) from GlobalData.com
+1. Download Excel files (single tab/advanced export) from GlobalData.com. Remember to check all the information columns to export!
 
-2. Preformat file to CSV and save to `data/` folder with timestamp on filename. 
+2. Preformat file to CSV and save to `data/` folder with timestamp on filename. Example `2020-12-08_clinical_trials.csv`.
 
 3. Source `run.R` file.
 
-4. Take a cup of tea and enjoy while machine is running.
+4. Take a cup of tea and enjoy while computer is doing some work.
