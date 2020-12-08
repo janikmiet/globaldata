@@ -131,5 +131,5 @@ for(page in pages){
 rmarkdown::render("index.Rmd", output_dir = "output/")
 
 ## UPLOAD HTML FILES ----
-system("scp -P 10199 -r ./output/* neurocenterfinland@neurocenterfinland.fi-h.seravo.com:/home/neurocenterfinland/wordpress/htdocs/kliiniset-tutkimukset")
+# system("scp -r ./output/* ...........")
 
